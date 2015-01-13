@@ -1,0 +1,8 @@
+<p>Tamagotchi Name: <%= @name %></p>
+<p>Food Level: <%= @food_level %></p>
+<p>Sleep Level: <%= @sleep_level %></p>
+<p>Activity Level: <%= @activity_level %></p>
+
+<form action="/tamagotchi" method="post">
+  <button class="btn btn-primary" name="snack_time" value="food">Feed me!</button>
+</form>
