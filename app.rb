@@ -9,25 +9,30 @@ get("/") do
 end
 
 post("/tamagotchi") do
-  @name = params.fetch('name') if params.fetch('name')
-  @new_pet = Tamagotchi.new(@name)
-  @new_pet.save()
+  if params['name'] != nil
+    @name = params.fetch('name')
+    @new_pet = Tamagotchi.new(@name)
+    @new_pet.save()
+    puts "this got saved"
+  end
 
-  @Tamagotchi = Tamagotchi.last()
-puts @Tamagotchi
-
-  @food_level = @Tamagotchi.food_level()
-  @sleep_level = @Tamagotchi.sleep_level()
-  @activity_level = @Tamagotchi.activity_level()
+  @tamagotchi = Tamagotchi.last()
+  @food_level = @tamagotchi.food_level()
+  @sleep_level = @tamagotchi.sleep_level()
+  @activity_level = @tamagotchi.activity_level()
 
   erb(:tamagotchi)
 end
 
 post("/keep_it_alive") do
 
-  if params.fetch('snack_time').==("food")
-    @Tamagotchi.snack_time()
-  end
+  Tamagotchi.last().snack_time()
 
-  redirect("/tamagotchi")
+  @tamagotchi = Tamagotchi.last()
+
+  @name = @tamagotchi.name()
+  @food_level = @tamagotchi.food_level()
+  @sleep_level = @tamagotchi.sleep_level()
+  @activity_level = @tamagotchi.activity_level()
+  erb(:tamagotchi)
 end

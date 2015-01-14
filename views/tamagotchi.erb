@@ -3,6 +3,12 @@
 <p>Sleep Level: <%= @sleep_level %></p>
 <p>Activity Level: <%= @activity_level %></p>
 
-<form action="/tamagotchi" method="post">
+<form action="/keep_it_alive" method="post">
   <button class="btn btn-primary" name="snack_time" value="food">Feed me!</button>
+
+   <% if false %>
+
+  <input type="hidden" name="name" value="<%= @Tamagotchi.name() %>">
+  <% end %>
+
 </form>

@@ -52,6 +52,7 @@ class Tamagotchi
 
  define_singleton_method(:all) do
    @@all_Tamagotchis
+   puts "in method #{@@all_Tamagotchis}"
  end
 
   define_method(:save) do
@@ -59,7 +60,7 @@ class Tamagotchi
   end
 
   define_singleton_method(:last) do
-    @@all_Tamagotchis.pop()
+    @@all_Tamagotchis.last()
     # @@last = @@last.push(@@all_Tamagotchis.pop())
   end
 
