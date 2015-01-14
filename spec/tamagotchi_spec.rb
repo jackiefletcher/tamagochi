@@ -2,6 +2,10 @@ require('rspec')
 require('tamagotchi')
 
 describe(Tamagotchi) do
+  before() do
+    Tamagotchi.clear()
+  end
+
   describe('#initialize') do
     it('sets the name and a few other properties') do
       my_pet = Tamagotchi.new("Kuchipatchi")
@@ -66,8 +70,37 @@ describe(Tamagotchi) do
       end
       expect(my_pet.is_alive()).to(eq(false))
     end
-
-
   end
+
+  describe(".all") do
+    it("creates an empty array of class instances") do
+      expect(Tamagotchi.all()).to(eq([]))
+    end
+  end
+
+  describe("#save") do
+    it("saves the Tamagotchi from internet oblivion") do
+      my_pet = Tamagotchi.new("Petra")
+      my_pet.save()
+      expect(Tamagotchi.all()).to(eq([my_pet]))
+    end
+  end
+
+  describe(".last") do
+    it("takes the last Tamagotchi from the list") do
+      my_pet = Tamagotchi.new("Kuchipatchi")
+      my_pet.save()
+      last = Tamagotchi.new("Paula")
+      last.save()
+      expect(Tamagotchi.last()).to(eq(last))
+    end
+  end
+
+ describe(".clear") do
+   it("clears the list") do
+     expect(Tamagotchi.all()).to(eq([]))
+   end
+
+ end
 
 end
